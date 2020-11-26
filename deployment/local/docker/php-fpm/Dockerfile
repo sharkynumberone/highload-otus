@@ -16,6 +16,10 @@ RUN docker-php-ext-install pdo pdo_mysql gd zip
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+USER root
+
+RUN usermod -u 1000 www-data
+
 WORKDIR /var/www/
 
 CMD ["php-fpm"]

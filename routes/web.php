@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FriendController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +14,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::view('/', 'welcome');
+Route::view('/authorize', 'pages.authorize');
+Route::post('/authorize', [UserController::class, 'authorization']);
+Route::get('/register', [UserController::class, 'showRegister']);
+Route::post('/register', [UserController::class, 'register']);
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => ['authorized']], function () {
+    Route::get('/profile', [UserController::class, 'showProfile']);
+    Route::get('/users', [UserController::class, 'showUsers']);
+    Route::get('/friends', [FriendController::class, 'list']);
+    Route::get('/friends/{id}/add', [FriendController::class, 'addToFriendsList'])->name('add_to_friends_list');
+    Route::get('/friends/{id}/remove', [FriendController::class, 'removeFromFriendsList'])->name('remove_from_friends_list');
 });
