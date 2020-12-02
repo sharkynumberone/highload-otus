@@ -19,6 +19,7 @@ Route::view('/authorize', 'pages.authorize');
 Route::post('/authorize', [UserController::class, 'authorization']);
 Route::get('/register', [UserController::class, 'showRegister']);
 Route::post('/register', [UserController::class, 'register']);
+Route::get('/users/search', [UserController::class, 'search']);
 
 Route::group(['middleware' => ['authorized']], function () {
     Route::get('/profile', [UserController::class, 'showProfile']);

@@ -77,6 +77,20 @@ class UserController extends Controller
         return view('pages.users')->with(compact('users'));
     }
 
+    public function search(Request $request)
+    {
+        $user_repository = $this->user_factory->createUserRepository();
+
+        $search = $request->input('search_string');
+
+        $name_surname = explode(' ', $search);
+
+        $user_raw = $user_repository->findByFirstNameAndLastName($name_surname[0], $name_surname[1]);
+        $users = json_decode(json_encode($user_raw), true);
+
+        return view('pages.users_search')->with(compact('users'));
+    }
+
     /**
      * @param UserLoginRequest $request
      * @return Application|RedirectResponse|Redirector

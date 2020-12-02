@@ -72,4 +72,9 @@ values (?,?,?,?,?,?,?,?,?);
     {
         return DB::select("select users.*, friends.friend_id as friend from users left join friends on friends.friend_id = users.id  where users.id <> '$user_id'");
     }
+
+    public function findByFirstNameAndLastName(string $first_name, string $last_name)
+    {
+        return DB::select("select users.* from users where first_name like '$first_name' and last_name like '$last_name' order by id desc");
+    }
 }
