@@ -1,0 +1,15 @@
+/node_modules
+/public/hot
+/public/storage
+/public/mix-manifest.json
+/public/css/
+/public/js/
+/storage/*.key
+/vendor
+/.env
+/.phpunit.result.cache
+/npm-debug.log
+/yarn-error.log
+/.idea
+/ubuntu-bionic-18.04-cloudimg-console.log
+/persistent_data
