@@ -65,6 +65,10 @@ class UserController extends Controller
         return redirect('/profile');
     }
 
+    /**
+     * @param Request $request
+     * @return Application|Factory|View
+     */
     public function showUsers(Request $request)
     {
         $user_service = $this->user_factory->createUserService();
@@ -77,6 +81,10 @@ class UserController extends Controller
         return view('pages.users')->with(compact('users'));
     }
 
+    /**
+     * @param Request $request
+     * @return Application|Factory|View
+     */
     public function search(Request $request)
     {
         $user_repository = $this->user_factory->createUserRepository();

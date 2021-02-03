@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Services\Factories\FriendFactory;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class FriendController
@@ -12,11 +16,19 @@ class FriendController
      */
     private $friend_factory;
 
+    /**
+     * FriendController constructor.
+     * @param FriendFactory $friend_factory
+     */
     public function __construct(FriendFactory $friend_factory)
     {
         $this->friend_factory = $friend_factory;
     }
 
+    /**
+     * @param Request $request
+     * @return Application|Factory|View
+     */
     public function list(Request $request)
     {
         $user_service = $this->friend_factory->createUserService();
@@ -29,6 +41,12 @@ class FriendController
 
         return view('pages.friends')->with(compact('friends'));
     }
+
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return RedirectResponse
+     */
     public function addToFriendsList(Request $request, int $id)
     {
         $user_service = $this->friend_factory->createUserService();
@@ -43,6 +61,11 @@ class FriendController
         return redirect()->back();
     }
 
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return RedirectResponse
+     */
     public function removeFromFriendsList(Request $request, int $id)
     {
         $user_service = $this->friend_factory->createUserService();

@@ -25,7 +25,7 @@ class UserRepository
         )
 values (?,?,?,?,?,?,?,?,?);
 
-",[$register_user->getEmail(),
+", [$register_user->getEmail(),
             $register_user->getPassword(),
             $register_user->getSalt(),
             $register_user->getFirstName(),

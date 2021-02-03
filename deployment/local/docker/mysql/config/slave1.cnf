@@ -1,2 +1,6 @@
 [mysqld]
 server-id=2
+character-set-server=utf8
+default-storage-engine=InnoDB
+[client]
+default-character-set=utf8

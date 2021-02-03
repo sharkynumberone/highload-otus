@@ -29,7 +29,6 @@ services:
         volumes:
             - ./deployment/local/docker/mysql/config/master.cnf:/etc/my.cnf.d/repl.cnf
             - ./deployment/local/docker/mysql/config/master.sql:/docker-entrypoint-initdb.d/start.sql
-            #- ./persistent_data/master:/var/lib/mysql
         environment:
           - MYSQL_ROOT_PASSWORD=secret
           - MYSQL_DATABASE=project
@@ -41,7 +40,6 @@ services:
         volumes:
             - ./deployment/local/docker/mysql/config/slave1.cnf:/etc/my.cnf.d/repl.cnf
             - ./deployment/local/docker/mysql/config/slave.sql:/docker-entrypoint-initdb.d/start.sql
-            #- ./persistent_data/slave1:/var/lib/mysql
         depends_on:
             - mysql
         environment:
@@ -54,7 +52,6 @@ services:
         volumes:
             - ./deployment/local/docker/mysql/config/slave2.cnf:/etc/my.cnf.d/repl.cnf
             - ./deployment/local/docker/mysql/config/slave.sql:/docker-entrypoint-initdb.d/start.sql
-            #- ./persistent_data/slave2:/var/lib/mysql
         depends_on:
             - mysql
         environment:
